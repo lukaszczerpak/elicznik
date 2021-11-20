@@ -1,0 +1,6 @@
+.envrc
+.gitignore
+Dockerfile
+elicznik-sync
+*.yaml
+*.json
