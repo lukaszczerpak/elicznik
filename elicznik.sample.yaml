@@ -1,6 +1,9 @@
+general:
+  timezone: Europe/Warsaw
 influxdb:
   bucket: your bucket name
   org: organization name
+  measurement: measurement name
   url: https://your.influxdb.instance
   token: token with read & write permissions
 tauron:

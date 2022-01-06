@@ -1,6 +1,7 @@
 .envrc
 .gitignore
 Dockerfile
-elicznik-sync
+elicznik
+testdata
 *.yaml
 *.json

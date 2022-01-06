@@ -49,27 +49,26 @@ func init() {
 	})
 }
 
-// Debug ...
-func Debug(format string, v ...interface{}) {
+func Debugf(format string, v ...interface{}) {
 	log.Debugf(format, v...)
 }
 
-// Info ...
-func Info(format string, v ...interface{}) {
+func Infof(format string, v ...interface{}) {
 	log.Infof(format, v...)
 }
 
-// Warn ...
-func Warn(format string, v ...interface{}) {
+func Warnf(format string, v ...interface{}) {
 	log.Warnf(format, v...)
 }
 
-// Error ...
-func Error(format string, v ...interface{}) {
+func Errorf(format string, v ...interface{}) {
 	log.Errorf(format, v...)
 }
 
-// Fatal ...
-func Fatal(format string, v ...interface{}) {
+func Fatalf(format string, v ...interface{}) {
 	log.Fatalf(format, v...)
+}
+
+func EnableDebug() {
+	log.SetLevel(logrus.DebugLevel)
 }
