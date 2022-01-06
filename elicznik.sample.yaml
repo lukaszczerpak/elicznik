@@ -9,5 +9,5 @@ influxdb:
 tauron:
   login: your@login.net
   password: password
-  smart_nr: 0123456789
-  start_date: 2021-10-01
+  smart-nr: 0123456789
+  start-date: 2021-10-01
