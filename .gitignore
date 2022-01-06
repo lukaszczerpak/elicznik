@@ -1,5 +1,5 @@
-/elicznik-sync
-/elicznik-sync.yaml
+/elicznik
+/elicznik.yaml
 
 # Created by https://www.toptal.com/developers/gitignore/api/go,dotenv,direnv,jetbrains+all
 # Edit at https://www.toptal.com/developers/gitignore?templates=go,dotenv,direnv,jetbrains+all

@@ -1,4 +1,4 @@
-# elicznik-sync
+# elicznik
 
 Small app that synchronises Tauron's eLicznik data with InfluxDB bucket.  
 It validates data provided by Tauron to ensure data is complete before writing to the database.  
@@ -33,7 +33,7 @@ In case of any delay on Tauron side, missing data will be fetch on the following
 (based on the last measurement date stored in InfluxDB).
 
 ```shell
-❯ elicznik-sync 
+❯ elicznik 
 time="2021-11-07T21:43:26+01:00" level=info msg="Fetching measurements from 2021-08-11 00:00:00 +0200 CEST to 2021-11-07 00:00:00 +0100 CET"
 time="2021-11-07T21:43:26+01:00" level=info msg="Batch #0: from 2021-08-11 00:00:00 +0200 CEST to 2021-09-10 00:00:00 +0200 CEST"
 time="2021-11-07T21:43:31+01:00" level=info msg="Writing measurements for 2021-08-11"
@@ -48,29 +48,29 @@ time="2021-11-07T21:43:37+01:00" level=info msg="Writing measurements for 2021-0
 ...
 ```
 
-Optionally you can use `--config` flag to point to your configuration file in case it's not in current folder or filename is not `elicznik-sync.yaml`:
+Optionally you can use `--config` flag to point to your configuration file in case it's not in current folder or filename is not `elicznik.yaml`:
 
 ```shell
-❯ elicznik-sync --help
+❯ elicznik --help
 This program synchronizes data from Tauron with InfluxDB.
 It automatically detects last sync and pulls only necessary
 amount of data.
 
 Usage:
-  elicznik-sync [flags]
+  elicznik [flags]
 
 Flags:
-      --config string   config file (default is elicznik-sync.yaml)
-  -h, --help            help for elicznik-sync
+      --config string   config file (default is elicznik.yaml)
+  -h, --help            help for elicznik
 
 ```
 
 ## Running from Cron
 
-1. Create a configuration file, ie. `/usr/local/etc/elicznik-sync.yaml`
+1. Create a configuration file, ie. `/usr/local/etc/elicznik.yaml`
 
 2. Add a new job to your cron configuration:
     ```
-    # elicznik-sync
-    10 9,12,16 * * * docker run --rm -v /usr/local/etc/elicznik-sync.yaml:/elicznik-sync.yaml -e TZ="Europe/Warsaw" elicznik-sync:latest elicznik-sync >> /var/log/elicznik-sync.log 2> >(tee -a /var/log/elicznik-sync.log >&2)
+    # elicznik
+    10 9,12,16 * * * docker run --rm -v /usr/local/etc/elicznik.yaml:/elicznik.yaml -e TZ="Europe/Warsaw" elicznik:latest elicznik >> /var/log/elicznik.log 2> >(tee -a /var/log/elicznik.log >&2)
     ```

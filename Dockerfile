@@ -6,7 +6,7 @@ ADD . /build/
 
 WORKDIR /build
 
-RUN CGO_ENABLED=0 GOOS=linux go build -a -o elicznik-sync .
+RUN CGO_ENABLED=0 GOOS=linux go build -a -o elicznik .
 
 
 FROM alpine:latest
@@ -16,7 +16,7 @@ RUN apk update && \
 
 ENV TZ Europe/Warsaw
 
-COPY --from=builder /build/elicznik-sync .
+COPY --from=builder /build/elicznik .
 
-ENTRYPOINT [ "./elicznik-sync" ]
-CMD [ "--config", "elicznik-sync.yaml" ]
+ENTRYPOINT [ "./elicznik" ]
+CMD [ "--config", "elicznik.yaml" ]

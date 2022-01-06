@@ -1,0 +1,514 @@
+{
+  "type": "Godzin",
+  "name": {
+    "chart": "Pob\u00f3r energii [kWh]"
+  },
+  "dane": {
+    "chart": [
+      {
+        "EC": "0.288",
+        "Date": "2021-10-31",
+        "Hour": "1",
+        "Status": "0",
+        "Extra": "N",
+        "Zone": "1",
+        "ZoneName": "Ca\u0142a doba",
+        "Taryfa": "G11"
+      },
+      {
+        "EC": "0.264",
+        "Date": "2021-10-31",
+        "Hour": "2",
+        "Status": "0",
+        "Extra": "N",
+        "Zone": "1",
+        "ZoneName": "Ca\u0142a doba",
+        "Taryfa": "G11"
+      },
+      {
+        "EC": "0.281",
+        "Date": "2021-10-31",
+        "Hour": "3",
+        "Status": "0",
+        "Extra": "N",
+        "Zone": "1",
+        "ZoneName": "Ca\u0142a doba",
+        "Taryfa": "G11"
+      },
+      {
+        "EC": "0.299",
+        "Date": "2021-10-31",
+        "Hour": "3",
+        "Status": "0",
+        "Extra": "T",
+        "Zone": "1",
+        "ZoneName": "Ca\u0142a doba",
+        "Taryfa": "G11"
+      },
+      {
+        "EC": "0.297",
+        "Date": "2021-10-31",
+        "Hour": "4",
+        "Status": "0",
+        "Extra": "N",
+        "Zone": "1",
+        "ZoneName": "Ca\u0142a doba",
+        "Taryfa": "G11"
+      },
+      {
+        "EC": "0.282",
+        "Date": "2021-10-31",
+        "Hour": "5",
+        "Status": "0",
+        "Extra": "N",
+        "Zone": "1",
+        "ZoneName": "Ca\u0142a doba",
+        "Taryfa": "G11"
+      },
+      {
+        "EC": "0.284",
+        "Date": "2021-10-31",
+        "Hour": "6",
+        "Status": "0",
+        "Extra": "N",
+        "Zone": "1",
+        "ZoneName": "Ca\u0142a doba",
+        "Taryfa": "G11"
+      },
+      {
+        "EC": "0.308",
+        "Date": "2021-10-31",
+        "Hour": "7",
+        "Status": "0",
+        "Extra": "N",
+        "Zone": "1",
+        "ZoneName": "Ca\u0142a doba",
+        "Taryfa": "G11"
+      },
+      {
+        "EC": "0.927",
+        "Date": "2021-10-31",
+        "Hour": "8",
+        "Status": "0",
+        "Extra": "N",
+        "Zone": "1",
+        "ZoneName": "Ca\u0142a doba",
+        "Taryfa": "G11"
+      },
+      {
+        "EC": "0.105",
+        "Date": "2021-10-31",
+        "Hour": "9",
+        "Status": "0",
+        "Extra": "N",
+        "Zone": "1",
+        "ZoneName": "Ca\u0142a doba",
+        "Taryfa": "G11"
+      },
+      {
+        "EC": "0.014",
+        "Date": "2021-10-31",
+        "Hour": "10",
+        "Status": "0",
+        "Extra": "N",
+        "Zone": "1",
+        "ZoneName": "Ca\u0142a doba",
+        "Taryfa": "G11"
+      },
+      {
+        "EC": "0",
+        "Date": "2021-10-31",
+        "Hour": "11",
+        "Status": "0",
+        "Extra": "N",
+        "Zone": "1",
+        "ZoneName": "Ca\u0142a doba",
+        "Taryfa": "G11"
+      },
+      {
+        "EC": "0",
+        "Date": "2021-10-31",
+        "Hour": "12",
+        "Status": "0",
+        "Extra": "N",
+        "Zone": "1",
+        "ZoneName": "Ca\u0142a doba",
+        "Taryfa": "G11"
+      },
+      {
+        "EC": "0",
+        "Date": "2021-10-31",
+        "Hour": "13",
+        "Status": "0",
+        "Extra": "N",
+        "Zone": "1",
+        "ZoneName": "Ca\u0142a doba",
+        "Taryfa": "G11"
+      },
+      {
+        "EC": "0",
+        "Date": "2021-10-31",
+        "Hour": "14",
+        "Status": "0",
+        "Extra": "N",
+        "Zone": "1",
+        "ZoneName": "Ca\u0142a doba",
+        "Taryfa": "G11"
+      },
+      {
+        "EC": "0.014",
+        "Date": "2021-10-31",
+        "Hour": "15",
+        "Status": "0",
+        "Extra": "N",
+        "Zone": "1",
+        "ZoneName": "Ca\u0142a doba",
+        "Taryfa": "G11"
+      },
+      {
+        "EC": "0.079",
+        "Date": "2021-10-31",
+        "Hour": "16",
+        "Status": "0",
+        "Extra": "N",
+        "Zone": "1",
+        "ZoneName": "Ca\u0142a doba",
+        "Taryfa": "G11"
+      },
+      {
+        "EC": "0.324",
+        "Date": "2021-10-31",
+        "Hour": "17",
+        "Status": "0",
+        "Extra": "N",
+        "Zone": "1",
+        "ZoneName": "Ca\u0142a doba",
+        "Taryfa": "G11"
+      },
+      {
+        "EC": "0.579",
+        "Date": "2021-10-31",
+        "Hour": "18",
+        "Status": "0",
+        "Extra": "N",
+        "Zone": "1",
+        "ZoneName": "Ca\u0142a doba",
+        "Taryfa": "G11"
+      },
+      {
+        "EC": "0.45",
+        "Date": "2021-10-31",
+        "Hour": "19",
+        "Status": "0",
+        "Extra": "N",
+        "Zone": "1",
+        "ZoneName": "Ca\u0142a doba",
+        "Taryfa": "G11"
+      },
+      {
+        "EC": "0.472",
+        "Date": "2021-10-31",
+        "Hour": "20",
+        "Status": "0",
+        "Extra": "N",
+        "Zone": "1",
+        "ZoneName": "Ca\u0142a doba",
+        "Taryfa": "G11"
+      },
+      {
+        "EC": "0.493",
+        "Date": "2021-10-31",
+        "Hour": "21",
+        "Status": "0",
+        "Extra": "N",
+        "Zone": "1",
+        "ZoneName": "Ca\u0142a doba",
+        "Taryfa": "G11"
+      },
+      {
+        "EC": "0.921",
+        "Date": "2021-10-31",
+        "Hour": "22",
+        "Status": "0",
+        "Extra": "N",
+        "Zone": "1",
+        "ZoneName": "Ca\u0142a doba",
+        "Taryfa": "G11"
+      },
+      {
+        "EC": "0.843",
+        "Date": "2021-10-31",
+        "Hour": "23",
+        "Status": "0",
+        "Extra": "N",
+        "Zone": "1",
+        "ZoneName": "Ca\u0142a doba",
+        "Taryfa": "G11"
+      },
+      {
+        "EC": "0.295",
+        "Date": "2021-10-31",
+        "Hour": "24",
+        "Status": "0",
+        "Extra": "N",
+        "Zone": "1",
+        "ZoneName": "Ca\u0142a doba",
+        "Taryfa": "G11"
+      }
+    ],
+    "OZE": [
+      {
+        "EC": "0.288",
+        "Date": "2021-10-31",
+        "Hour": "1",
+        "Status": "0",
+        "Extra": "N",
+        "Zone": "1",
+        "ZoneName": "Ca\u0142a doba",
+        "Taryfa": "G11"
+      },
+      {
+        "EC": "0.264",
+        "Date": "2021-10-31",
+        "Hour": "2",
+        "Status": "0",
+        "Extra": "N",
+        "Zone": "1",
+        "ZoneName": "Ca\u0142a doba",
+        "Taryfa": "G11"
+      },
+      {
+        "EC": "0.281",
+        "Date": "2021-10-31",
+        "Hour": "3",
+        "Status": "0",
+        "Extra": "N",
+        "Zone": "1",
+        "ZoneName": "Ca\u0142a doba",
+        "Taryfa": "G11"
+      },
+      {
+        "EC": "0.299",
+        "Date": "2021-10-31",
+        "Hour": "3",
+        "Status": "0",
+        "Extra": "T",
+        "Zone": "1",
+        "ZoneName": "Ca\u0142a doba",
+        "Taryfa": "G11"
+      },
+      {
+        "EC": "0.297",
+        "Date": "2021-10-31",
+        "Hour": "4",
+        "Status": "0",
+        "Extra": "N",
+        "Zone": "1",
+        "ZoneName": "Ca\u0142a doba",
+        "Taryfa": "G11"
+      },
+      {
+        "EC": "0.282",
+        "Date": "2021-10-31",
+        "Hour": "5",
+        "Status": "0",
+        "Extra": "N",
+        "Zone": "1",
+        "ZoneName": "Ca\u0142a doba",
+        "Taryfa": "G11"
+      },
+      {
+        "EC": "0.284",
+        "Date": "2021-10-31",
+        "Hour": "6",
+        "Status": "0",
+        "Extra": "N",
+        "Zone": "1",
+        "ZoneName": "Ca\u0142a doba",
+        "Taryfa": "G11"
+      },
+      {
+        "EC": "0.308",
+        "Date": "2021-10-31",
+        "Hour": "7",
+        "Status": "0",
+        "Extra": "N",
+        "Zone": "1",
+        "ZoneName": "Ca\u0142a doba",
+        "Taryfa": "G11"
+      },
+      {
+        "EC": "0.927",
+        "Date": "2021-10-31",
+        "Hour": "8",
+        "Status": "0",
+        "Extra": "N",
+        "Zone": "1",
+        "ZoneName": "Ca\u0142a doba",
+        "Taryfa": "G11"
+      },
+      {
+        "EC": "0.105",
+        "Date": "2021-10-31",
+        "Hour": "9",
+        "Status": "0",
+        "Extra": "N",
+        "Zone": "1",
+        "ZoneName": "Ca\u0142a doba",
+        "Taryfa": "G11"
+      },
+      {
+        "EC": "0.014",
+        "Date": "2021-10-31",
+        "Hour": "10",
+        "Status": "0",
+        "Extra": "N",
+        "Zone": "1",
+        "ZoneName": "Ca\u0142a doba",
+        "Taryfa": "G11"
+      },
+      {
+        "EC": "0",
+        "Date": "2021-10-31",
+        "Hour": "11",
+        "Status": "0",
+        "Extra": "N",
+        "Zone": "1",
+        "ZoneName": "Ca\u0142a doba",
+        "Taryfa": "G11"
+      },
+      {
+        "EC": "0",
+        "Date": "2021-10-31",
+        "Hour": "12",
+        "Status": "0",
+        "Extra": "N",
+        "Zone": "1",
+        "ZoneName": "Ca\u0142a doba",
+        "Taryfa": "G11"
+      },
+      {
+        "EC": "0",
+        "Date": "2021-10-31",
+        "Hour": "13",
+        "Status": "0",
+        "Extra": "N",
+        "Zone": "1",
+        "ZoneName": "Ca\u0142a doba",
+        "Taryfa": "G11"
+      },
+      {
+        "EC": "0",
+        "Date": "2021-10-31",
+        "Hour": "14",
+        "Status": "0",
+        "Extra": "N",
+        "Zone": "1",
+        "ZoneName": "Ca\u0142a doba",
+        "Taryfa": "G11"
+      },
+      {
+        "EC": "0.014",
+        "Date": "2021-10-31",
+        "Hour": "15",
+        "Status": "0",
+        "Extra": "N",
+        "Zone": "1",
+        "ZoneName": "Ca\u0142a doba",
+        "Taryfa": "G11"
+      },
+      {
+        "EC": "0.079",
+        "Date": "2021-10-31",
+        "Hour": "16",
+        "Status": "0",
+        "Extra": "N",
+        "Zone": "1",
+        "ZoneName": "Ca\u0142a doba",
+        "Taryfa": "G11"
+      },
+      {
+        "EC": "0.324",
+        "Date": "2021-10-31",
+        "Hour": "17",
+        "Status": "0",
+        "Extra": "N",
+        "Zone": "1",
+        "ZoneName": "Ca\u0142a doba",
+        "Taryfa": "G11"
+      },
+      {
+        "EC": "0.579",
+        "Date": "2021-10-31",
+        "Hour": "18",
+        "Status": "0",
+        "Extra": "N",
+        "Zone": "1",
+        "ZoneName": "Ca\u0142a doba",
+        "Taryfa": "G11"
+      },
+      {
+        "EC": "0.45",
+        "Date": "2021-10-31",
+        "Hour": "19",
+        "Status": "0",
+        "Extra": "N",
+        "Zone": "1",
+        "ZoneName": "Ca\u0142a doba",
+        "Taryfa": "G11"
+      },
+      {
+        "EC": "0.472",
+        "Date": "2021-10-31",
+        "Hour": "20",
+        "Status": "0",
+        "Extra": "N",
+        "Zone": "1",
+        "ZoneName": "Ca\u0142a doba",
+        "Taryfa": "G11"
+      },
+      {
+        "EC": "0.493",
+        "Date": "2021-10-31",
+        "Hour": "21",
+        "Status": "0",
+        "Extra": "N",
+        "Zone": "1",
+        "ZoneName": "Ca\u0142a doba",
+        "Taryfa": "G11"
+      },
+      {
+        "EC": "0.921",
+        "Date": "2021-10-31",
+        "Hour": "22",
+        "Status": "0",
+        "Extra": "N",
+        "Zone": "1",
+        "ZoneName": "Ca\u0142a doba",
+        "Taryfa": "G11"
+      },
+      {
+        "EC": "0.843",
+        "Date": "2021-10-31",
+        "Hour": "23",
+        "Status": "0",
+        "Extra": "N",
+        "Zone": "1",
+        "ZoneName": "Ca\u0142a doba",
+        "Taryfa": "G11"
+      },
+      {
+        "EC": "0.295",
+        "Date": "2021-10-31",
+        "Hour": "24",
+        "Status": "0",
+        "Extra": "N",
+        "Zone": "1",
+        "ZoneName": "Ca\u0142a doba",
+        "Taryfa": "G11"
+      }
+    ],
+    "weather": []
+  },
+  "ok": 1
+}
