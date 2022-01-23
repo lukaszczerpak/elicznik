@@ -1,4 +1,4 @@
-package tauronapi
+package api
 
 type ELicznikMeasurement struct {
 	Date  string  `json:"Date"`

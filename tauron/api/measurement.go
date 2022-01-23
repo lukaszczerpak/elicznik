@@ -1,4 +1,4 @@
-package tauronapi
+package api
 
 import (
 	log "elicznik/logging"

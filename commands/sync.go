@@ -3,7 +3,7 @@ package commands
 import (
 	"elicznik/common"
 	log "elicznik/logging"
-	"elicznik/taurondb"
+	"elicznik/tauron/db"
 	"elicznik/util"
 	"time"
 
@@ -25,7 +25,7 @@ func init() {
 }
 
 func syncData(cfg *common.AppConfig) {
-	tdb := taurondb.New(cfg.General.Location, cfg.Influxdb.Url, cfg.Influxdb.Token, cfg.Influxdb.Org, cfg.Influxdb.Bucket, cfg.Influxdb.Measurement)
+	tdb := db.New(cfg.General.Location, cfg.Influxdb.Url, cfg.Influxdb.Token, cfg.Influxdb.Org, cfg.Influxdb.Bucket, cfg.Influxdb.Measurement)
 
 	lastMeasurementDate, err := tdb.GetLastMeasurementDate()
 	if err != nil {

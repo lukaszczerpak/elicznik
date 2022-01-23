@@ -3,8 +3,8 @@ package commands
 import (
 	"elicznik/common"
 	log "elicznik/logging"
-	"elicznik/tauronapi"
-	"elicznik/taurondb"
+	"elicznik/tauron/api"
+	"elicznik/tauron/db"
 	"elicznik/util"
 	"time"
 
@@ -51,8 +51,8 @@ func fetchData(cfg *common.AppConfig, startTime, stopTime time.Time) {
 	}
 
 	log.Infof("Fetching measurements from %s to %s", startTime.Format(util.DATE_FORMAT), stopTime.Format(util.DATE_FORMAT))
-	elicznik := tauronapi.New(cfg.Tauron.Login, cfg.Tauron.Password, cfg.Tauron.SmartNr)
-	tdb := taurondb.New(cfg.General.Location, cfg.Influxdb.Url, cfg.Influxdb.Token, cfg.Influxdb.Org, cfg.Influxdb.Bucket, cfg.Influxdb.Measurement)
+	elicznik := api.New(cfg.Tauron.Login, cfg.Tauron.Password, cfg.Tauron.SmartNr)
+	tdb := db.New(cfg.General.Location, cfg.Influxdb.Url, cfg.Influxdb.Token, cfg.Influxdb.Org, cfg.Influxdb.Bucket, cfg.Influxdb.Measurement)
 
 	for month := 0; !startTime.AddDate(0, month, 0).After(stopTime); month++ {
 		rangeStartTime := startTime.AddDate(0, month, 0)

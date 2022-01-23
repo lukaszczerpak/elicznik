@@ -1,4 +1,4 @@
-package tauronapi
+package api
 
 import (
 	"github.com/pkg/errors"

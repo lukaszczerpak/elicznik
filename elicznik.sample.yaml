@@ -11,3 +11,4 @@ tauron:
   password: password
   smart-nr: 0123456789
   start-date: 2021-10-01
+  storage-factor: 0.8

@@ -17,9 +17,10 @@ type AppConfig struct {
 		Token       string `mapstructure:"token" validate:"required"`
 	} `mapstructure:"influxdb"`
 	Tauron struct {
-		Login     string `mapstructure:"login" validate:"required"`
-		Password  string `mapstructure:"password" validate:"required"`
-		SmartNr   string `mapstructure:"smart-nr" validate:"required"`
-		StartDate string `mapstructure:"start-date" validate:"required"`
+		Login         string  `mapstructure:"login" validate:"required"`
+		Password      string  `mapstructure:"password" validate:"required"`
+		SmartNr       string  `mapstructure:"smart-nr" validate:"required"`
+		StartDate     string  `mapstructure:"start-date" validate:"required"`
+		StorageFactor float64 `mapstructure:"storage-factor" validate:"required"`
 	} `mapstructure:"tauron"`
 }

@@ -1,4 +1,4 @@
-package taurondb
+package db
 
 import (
 	influxdb2 "github.com/influxdata/influxdb-client-go/v2"

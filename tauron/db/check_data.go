@@ -1,4 +1,4 @@
-package taurondb
+package db
 
 import (
 	"context"
