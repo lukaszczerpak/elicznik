@@ -16,15 +16,17 @@ var syncDataCmd = &cobra.Command{
 	Long:  `If first checks last measurement in db and fetches missing data between the last measurement and today midnight`,
 	Run: func(cmd *cobra.Command, args []string) {
 		config.General.DeleteBeforeWrite = false
-		syncData(&config)
+		processDataFlag, _ := cmd.Flags().GetBool("process")
+		syncData(&config, processDataFlag)
 	},
 }
 
 func init() {
+	syncDataCmd.Flags().BoolP("process", "p", false, "Process balance data after the sync.")
 	rootCmd.AddCommand(syncDataCmd)
 }
 
-func syncData(cfg *common.AppConfig) {
+func syncData(cfg *common.AppConfig, processDataFlag bool) {
 	tdb := db.New(cfg.General.Location, cfg.Influxdb.Url, cfg.Influxdb.Token, cfg.Influxdb.Org, cfg.Influxdb.Bucket, cfg.Influxdb.Measurement)
 
 	lastMeasurementDate, err := tdb.GetLastMeasurementDate()
@@ -53,4 +55,8 @@ func syncData(cfg *common.AppConfig) {
 	}
 
 	fetchData(cfg, startTime, yesterday)
+
+	if processDataFlag {
+		processData(cfg)
+	}
 }

@@ -54,11 +54,14 @@ func processData(cfg *common.AppConfig) {
 			log.Fatalf("Error when processing data: %v", err)
 		}
 
+		startTime := time.Date(tmb.Date.Year(), tmb.Date.Month(), 1, 0, 0, 0, 0, tmb.Date.Location())
+		stopTime := startTime.AddDate(0, 1, 0).Add(-1 * time.Second)
+		db.DeleteBalance(startTime, stopTime)
+
 		log.Infof("Month %s => complete data: %v", tmb.Date.Format(util.YEAR_MONTH_FORMAT), complete)
 		log.Debugf("%s: FromGridSum=%v, FeedInSum=%v", tmb.Date.Format(util.YEAR_MONTH_FORMAT), fromGrid, feedIn)
 		log.Debugf("%s: EnergyPurchase=%v, StorageTotal=%v, Storage=%v, Complete=%v", tmb.Date.Format(util.YEAR_MONTH_FORMAT),
 			tmb.EnergyPurchased, tmb.StorageTotal, tmb.Storage, complete)
-
 		db.WriteBalance(tmb, complete)
 	}
 }
