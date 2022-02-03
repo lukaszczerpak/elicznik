@@ -66,7 +66,8 @@ func fetchData(cfg *common.AppConfig, startTime, stopTime time.Time) {
 
 		if !cfg.General.DeleteBeforeWrite {
 			exists, err := tdb.CheckIfDataExists(rangeStartTime,
-				time.Date(rangeStopTime.Year(), rangeStopTime.Month(), rangeStopTime.Day(), 23, 0, 0, 0, rangeStopTime.Location()))
+				time.Date(rangeStopTime.Year(), rangeStopTime.Month(), rangeStopTime.Day(), 23, 0, 0, 0, rangeStopTime.Location()),
+				cfg.Influxdb.Measurement)
 			if err != nil {
 				log.Errorf("Checking DB failed: %v", err)
 				continue
