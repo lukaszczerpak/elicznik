@@ -6,7 +6,7 @@ ADD . /build/
 
 WORKDIR /build
 
-RUN CGO_ENABLED=0 GOOS=linux go build -a -o elicznik .
+RUN CGO_ENABLED=0 GOOS=linux go build -a -o elicznik -buildvcs=false .
 
 
 FROM alpine:latest
