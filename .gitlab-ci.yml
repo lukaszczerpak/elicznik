@@ -19,8 +19,8 @@ docker-build:
         echo "Running on branch '$CI_COMMIT_BRANCH': tag = $tag"
       fi
     - docker build --pull -t elicznik .
-    - docker tag "$CI_REGISTRY_IMAGE${tag}" .
-    - docker tag "$DH_REGISTRY_IMAGE${tag}" .
+    - docker tag elicznik "$CI_REGISTRY_IMAGE${tag}"
+    - docker tag elicznik "$DH_REGISTRY_IMAGE${tag}"
     - docker push "$CI_REGISTRY_IMAGE${tag}"
     - docker push "$DH_REGISTRY_IMAGE${tag}"
   # Run this job in a branch where a Dockerfile exists
