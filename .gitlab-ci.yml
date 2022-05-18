@@ -30,8 +30,5 @@ build:buildx:
     - docker buildx create --driver docker-container --use
     - docker buildx inspect --bootstrap
     - docker buildx ls
-    - docker buildx build --platform $CI_BUILDX_ARCHS --progress plain --pull -t elicznik .
-    - docker tag elicznik "$CI_REGISTRY_IMAGE${tag}"
-    - docker tag elicznik "$DH_REGISTRY_IMAGE${tag}"
-    - docker push "$CI_REGISTRY_IMAGE${tag}"
-    - docker push "$DH_REGISTRY_IMAGE${tag}"
+    - docker buildx build --platform $CI_BUILDX_ARCHS --progress plain --pull -t "$CI_REGISTRY_IMAGE${tag}" --push .
+    - docker buildx build --platform $CI_BUILDX_ARCHS --progress plain --pull -t "$DH_REGISTRY_IMAGE${tag}" --push .
