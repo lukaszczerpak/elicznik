@@ -1,14 +1,21 @@
-docker-build:
-  # Use the official docker image.
-  image: docker:latest
+image: docker:latest
+
+variables:
+  CI_BUILD_IMAGE: "jonoh/docker-buildx-qemu"
+  CI_BUILDX_ARCHS: "linux/amd64,linux/arm/v7,linux/arm/v8"
+
+.build:
+  image: $CI_BUILD_IMAGE
   stage: build
-  services:
-    - docker:dind
   before_script:
     - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
     - docker login -u "$DH_REGISTRY_USER" -p "$DH_REGISTRY_PASSWORD" $DH_REGISTRY
-  # Default branch leaves tag empty (= latest tag)
-  # All other branches are tagged with the escaped branch name (commit ref slug)
+
+build:buildx:
+  extends: .build
+  only: 
+    variables:
+      - $CI_BUILDX_ARCHS
   script:
     - |
       if [[ "$CI_COMMIT_BRANCH" == "$CI_DEFAULT_BRANCH" ]]; then
@@ -18,13 +25,13 @@ docker-build:
         tag=":$CI_COMMIT_REF_SLUG"
         echo "Running on branch '$CI_COMMIT_BRANCH': tag = $tag"
       fi
-    - docker build --pull -t elicznik .
+    # Use docker-container driver to allow useful features (push/multi-platform)
+    - update-binfmts --enable # Important: Ensures execution of other binary formats is enabled in the kernel
+    - docker buildx create --driver docker-container --use
+    - docker buildx inspect --bootstrap
+    - docker buildx ls
+    - docker buildx build --platform $CI_BUILDX_ARCHS --progress plain --pull -t elicznik .
     - docker tag elicznik "$CI_REGISTRY_IMAGE${tag}"
     - docker tag elicznik "$DH_REGISTRY_IMAGE${tag}"
     - docker push "$CI_REGISTRY_IMAGE${tag}"
     - docker push "$DH_REGISTRY_IMAGE${tag}"
-  # Run this job in a branch where a Dockerfile exists
-  rules:
-    - if: $CI_COMMIT_BRANCH
-      exists:
-        - Dockerfile
