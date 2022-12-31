@@ -1,12 +1,13 @@
 package api
 
 import (
-	"elicznik/util"
 	"encoding/json"
 	"fmt"
 	"github.com/pkg/errors"
 	"time"
 )
+
+const DATE_FORMAT = "02.01.2006"
 
 func (api *TauronApiClient) fetchData(dateFrom, dateTo time.Time) (*ELicznikData, error) {
 	err := api.login()
@@ -16,9 +17,9 @@ func (api *TauronApiClient) fetchData(dateFrom, dateTo time.Time) (*ELicznikData
 
 	resp, err := api.client.R().
 		SetFormData(map[string]string{
-			"dane[chartDay]":  dateFrom.Format(util.DATE_FORMAT),
-			"dane[startDay]":  dateFrom.Format(util.DATE_FORMAT),
-			"dane[endDay]":    dateTo.Format(util.DATE_FORMAT),
+			"dane[chartDay]":  dateFrom.Format(DATE_FORMAT),
+			"dane[startDay]":  dateFrom.Format(DATE_FORMAT),
+			"dane[endDay]":    dateTo.Format(DATE_FORMAT),
 			"dane[trybCSV]":   "godzin",
 			"dane[paramType]": "csv",
 			"dane[smartNr]":   api.smartNr,
