@@ -48,7 +48,7 @@ func deleteData(cfg *common.AppConfig, startTime, stopTime time.Time, deleteType
 		stopTime = time.Date(stopTime.Year(), stopTime.Month(), stopTime.Day(), 23, 59, 59, 0, stopTime.Location())
 		log.Infof("Period from %v to %v => deleting measurement data",
 			startTime.Format(util.DATE_FORMAT), stopTime.Format(util.DATE_FORMAT))
-		//db.DeleteMeasurements(startTime, stopTime)
+		db.DeleteMeasurements(startTime, stopTime)
 	case "balance":
 		startTime = time.Date(startTime.Year(), startTime.Month(), 1, 0, 0, 0, 0, startTime.Location())
 		stopTime = time.Date(stopTime.Year(), stopTime.Month(), 1, 0, 0, 0, 0, startTime.Location()).
