@@ -6,6 +6,8 @@ import (
 	"elicznik/tauron/api"
 	"elicznik/tauron/db"
 	"elicznik/util"
+	"encoding/json"
+	"os"
 	"time"
 
 	"github.com/spf13/cobra"
@@ -32,6 +34,7 @@ var fetchDataCmd = &cobra.Command{
 }
 
 func init() {
+	fetchDataCmd.Flags().StringVar(&config.General.DumpToFile, "dump-to-file", "", "Output to file instead of database")
 	fetchDataCmd.Flags().BoolVar(&config.General.DeleteBeforeWrite, "delete", false, "Delete old data before writing new data")
 	rootCmd.AddCommand(fetchDataCmd)
 }
@@ -64,33 +67,40 @@ func fetchData(cfg *common.AppConfig, startTime, stopTime time.Time) {
 		log.Infof("Batch #%d: Period from %v to %v", month,
 			rangeStartTime.Format(util.DATE_FORMAT), rangeStopTime.Format(util.DATE_FORMAT))
 
-		if !cfg.General.DeleteBeforeWrite {
-			exists, err := tdb.CheckIfDataExists(rangeStartTime,
-				time.Date(rangeStopTime.Year(), rangeStopTime.Month(), rangeStopTime.Day(), 23, 0, 0, 0, rangeStopTime.Location()),
-				cfg.Influxdb.Measurement)
-			if err != nil {
-				log.Errorf("Checking DB failed: %v", err)
-				continue
-			}
-			if exists {
-				log.Infof("Period from %v to %v => data exists in db, skipping",
-					rangeStartTime.Format(util.DATE_FORMAT), rangeStopTime.Format(util.DATE_FORMAT))
-				continue
+		if cfg.General.DumpToFile == "" {
+			if !cfg.General.DeleteBeforeWrite {
+				exists, err := tdb.CheckIfDataExists(rangeStartTime,
+					time.Date(rangeStopTime.Year(), rangeStopTime.Month(), rangeStopTime.Day(), 23, 0, 0, 0, rangeStopTime.Location()),
+					cfg.Influxdb.Measurement)
+				if err != nil {
+					log.Errorf("Checking DB failed: %v", err)
+					continue
+				}
+				if exists {
+					log.Infof("Period from %v to %v => data exists in db, skipping",
+						rangeStartTime.Format(util.DATE_FORMAT), rangeStopTime.Format(util.DATE_FORMAT))
+					continue
+				}
 			}
 		}
 
 		measurements, completeData := elicznik.GetMeasurements(rangeStartTime, rangeStopTime)
 
-		if cfg.General.DeleteBeforeWrite {
-			if !completeData {
-				log.Warnf("Incomplete data received, skipping this period")
-				break
+		if cfg.General.DumpToFile == "" {
+			if cfg.General.DeleteBeforeWrite {
+				if !completeData {
+					log.Warnf("Incomplete data received, skipping this period")
+					break
+				}
+
+				tdb.DeleteMeasurements(rangeStartTime, rangeStopTime)
 			}
 
-			tdb.DeleteMeasurements(rangeStartTime, rangeStopTime)
+			tdb.WriteMeasurements(measurements)
+		} else {
+			file, _ := json.MarshalIndent(measurements, "", " ")
+			_ = os.WriteFile(cfg.General.DumpToFile, file, 0644)
 		}
-
-		tdb.WriteMeasurements(measurements)
 
 		if !completeData {
 			if len(measurements) == 0 {

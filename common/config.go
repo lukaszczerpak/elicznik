@@ -7,6 +7,7 @@ type AppConfig struct {
 		Timezone          string         `mapstructure:"timezone" validate:"required"`
 		Location          *time.Location `mapstructure:"-"`
 		DeleteBeforeWrite bool           `mapstructure:"-"`
+		DumpToFile        string         `mapstructure:"-"`
 		Debug             bool           `mapstructure:"-"`
 	} `mapstructure:"general"`
 	Influxdb struct {
