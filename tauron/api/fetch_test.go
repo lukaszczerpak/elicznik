@@ -1,13 +1,12 @@
 package api
 
 import (
-	"encoding/json"
 	"github.com/jarcoal/httpmock"
 	"github.com/stretchr/testify/assert"
-	"io/ioutil"
 	"log"
 	"net/http"
 	"net/url"
+	"os"
 	"testing"
 	"time"
 )
@@ -23,31 +22,20 @@ func addLoginCookie(c *http.Client) {
 }
 
 func loadFile(filename string) []byte {
-	data, err := ioutil.ReadFile(filename)
+	data, err := os.ReadFile(filename)
 	if err != nil {
 		log.Fatal(err)
 	}
 	return data
 }
 
-func loadJsonToStruct(filename string, v interface{}) error {
-	data, err := ioutil.ReadFile(filename)
-	if err != nil {
-		log.Fatal(err)
-	}
-	return json.Unmarshal(data, &v)
-}
-
-func mockJsonResponse(filename string) {
+func mockResponses(filename string) {
 	httpmock.RegisterResponder("GET", `https://logowanie.tauron-dystrybucja.pl/login`,
 		httpmock.NewJsonResponderOrPanic(200, make(map[string]string)))
 	httpmock.RegisterResponder("POST", `https://logowanie.tauron-dystrybucja.pl/login`,
 		httpmock.NewJsonResponderOrPanic(200, make(map[string]string)))
-	httpmock.RegisterResponder("POST", `https://elicznik.tauron-dystrybucja.pl/index/charts`,
+	httpmock.RegisterResponder("POST", `https://elicznik.tauron-dystrybucja.pl/energia/do/dane`,
 		httpmock.NewBytesResponder(200, loadFile(filename)))
-
-	//httpmock.RegisterResponder("POST", `https://elicznik.tauron-dystrybucja.pl/index/charts`,
-	//	httpmock.NewJsonResponderOrPanic(200, util.LoadJsonToMap(filename)))
 }
 
 func TestFetchData(t *testing.T) {
@@ -56,7 +44,7 @@ func TestFetchData(t *testing.T) {
 	defer httpmock.DeactivateAndReset()
 
 	addLoginCookie(client.GetClient())
-	mockJsonResponse("../testdata/sample.json")
+	mockResponses("../../testdata/sample.csv")
 
 	s := &TauronApiClient{client: client}
 	resp, err := s.fetchData(time.Now(), time.Now())
@@ -74,7 +62,7 @@ func TestFetchDataCET2CEST(t *testing.T) {
 	defer httpmock.DeactivateAndReset()
 
 	addLoginCookie(client.GetClient())
-	mockJsonResponse("../testdata/sample-CET-to-CEST.json")
+	mockResponses("../../testdata/sample-CET-to-CEST.csv")
 
 	s := &TauronApiClient{client: client}
 	resp, err := s.fetchData(time.Now(), time.Now())
@@ -92,7 +80,7 @@ func TestFetchDataCEST2CET(t *testing.T) {
 	defer httpmock.DeactivateAndReset()
 
 	addLoginCookie(client.GetClient())
-	mockJsonResponse("../testdata/sample-CEST-to-CET.json")
+	mockResponses("../../testdata/sample-CEST-to-CET.csv")
 
 	s := &TauronApiClient{client: client}
 	resp, err := s.fetchData(time.Now(), time.Now())

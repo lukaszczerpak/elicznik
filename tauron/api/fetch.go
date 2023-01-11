@@ -1,7 +1,6 @@
 package api
 
 import (
-	"encoding/json"
 	"fmt"
 	"github.com/pkg/errors"
 	"time"
@@ -17,27 +16,23 @@ func (api *TauronApiClient) fetchData(dateFrom, dateTo time.Time) (*ELicznikData
 
 	resp, err := api.client.R().
 		SetFormData(map[string]string{
-			"dane[chartDay]":  dateFrom.Format(DATE_FORMAT),
-			"dane[startDay]":  dateFrom.Format(DATE_FORMAT),
-			"dane[endDay]":    dateTo.Format(DATE_FORMAT),
-			"dane[trybCSV]":   "godzin",
-			"dane[paramType]": "csv",
-			"dane[smartNr]":   api.smartNr,
-			"dane[checkOZE]":  "on",
+			"form[from]":     dateFrom.Format(DATE_FORMAT),
+			"form[to]":       dateTo.Format(DATE_FORMAT),
+			"form[type]":     "godzin",
+			"form[consum]":   "1",
+			"form[oze]":      "1",
+			"form[fileType]": "CSV",
 		}).
-		//SetResult(&ELicznikData{}).
-		Post("https://elicznik.tauron-dystrybucja.pl/index/charts")
+		Post("https://elicznik.tauron-dystrybucja.pl/energia/do/dane")
 
 	if err != nil {
 		return nil, errors.Wrap(err, "Fetching data error")
 	}
 
-	// not possible since tauron serves json with Content-Type text/html...
-	//result := resp.Result().(*ELicznikData)
 	var result *ELicznikData
-	err = json.Unmarshal(resp.Body(), &result)
+	result, err = ParseTauronCsv(resp.String())
 	if err != nil {
-		return nil, errors.Wrap(err, "JSON parsing error")
+		return nil, errors.Wrap(err, "CSV parsing error")
 	}
 
 	if result.Ok != 1 || len(result.Dane.FeedIn) != len(result.Dane.FromGrid) {
