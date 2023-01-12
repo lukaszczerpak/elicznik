@@ -16,7 +16,7 @@ func (tdb *TauronDB) GetMonthStats(m time.Time) (float64, float64, error) {
 
 		from(bucket: "%s")
 		|> range(start: %s, stop: %s)
-		|> filter(fn: (r) => r._measurement == "licznik" and (r["_field"] == "FeedIn" or r["_field"] == "FromGrid"))
+		|> filter(fn: (r) => r._measurement == "%s" and (r["_field"] == "FeedIn" or r["_field"] == "FromGrid"))
 		|> pivot(rowKey:["_time"], columnKey: ["_field"], valueColumn: "_value")
 		|> reduce(
 			  identity: {FeedIn_sum: 0.0, FromGrid_sum: 0.0},
@@ -27,7 +27,7 @@ func (tdb *TauronDB) GetMonthStats(m time.Time) (float64, float64, error) {
 			)
 		|> rename(columns: {FeedIn_sum: "FeedIn", FromGrid_sum: "FromGrid"})
 		|> keep(columns: ["FeedIn", "FromGrid"])`,
-		tdb.bucket, start.Format(time.RFC3339), stop.Format(time.RFC3339))
+		tdb.bucket, start.Format(time.RFC3339), stop.Format(time.RFC3339), tdb.measurementName)
 	result, err := queryAPI.Query(context.Background(), query)
 	if err != nil {
 		return -1, -1, err
