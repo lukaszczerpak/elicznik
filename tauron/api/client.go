@@ -1,10 +1,12 @@
 package api
 
 import (
-	"elicznik/util"
 	"github.com/go-resty/resty/v2"
 	"time"
 )
+
+const UA = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36"
+const REFERER = "https://elicznik.tauron-dystrybucja.pl/energia"
 
 type TauronApiClient struct {
 	client                      *resty.Client
@@ -16,7 +18,8 @@ func createRestyClient(apiKey string) *resty.Client {
 	//client.SetDebug(true)
 	client.SetTimeout(1 * time.Minute)
 	client.SetHeaders(map[string]string{
-		"User-Agent": util.USER_AGENT,
+		"User-Agent": UA,
+		"Referer":    REFERER,
 	})
 
 	return client

@@ -31,7 +31,7 @@ func parseTauronCsvRecord(record []string) (*ELicznikMeasurement, error) {
 		return nil, err
 	}
 
-	date, err := time.Parse("02.01.2006", ts[0])
+	date, err := time.Parse("2006-01-02", ts[0])
 	if err != nil {
 		return nil, err
 	}

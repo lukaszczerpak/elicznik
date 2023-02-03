@@ -1,5 +1,6 @@
 /elicznik
 /elicznik.yaml
+cookie.jar.txt
 
 # Created by https://www.toptal.com/developers/gitignore/api/go,dotenv,direnv,jetbrains+all
 # Edit at https://www.toptal.com/developers/gitignore?templates=go,dotenv,direnv,jetbrains+all
