@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+[[ -z "$TAURON_USER" ]] && { echo "Error: TAURON_USER is not set"; exit 1; }
+[[ -z "$TAURON_PASS" ]] && { echo "Error: TAURON_PASS is not set"; exit 1; }
+
 COOKIE_JAR=cookie.jar.txt
 UA="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36"
 REF="https://elicznik.tauron-dystrybucja.pl/energia"
