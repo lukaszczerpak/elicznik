@@ -15,7 +15,7 @@ func (api *TauronApiClient) fetchData(dateFrom, dateTo time.Time) (*ELicznikData
 	}
 
 	resp, err := api.client.R().
-		SetFormData(map[string]string{
+		SetQueryParams(map[string]string{
 			"form[from]":     dateFrom.Format(DATE_FORMAT),
 			"form[to]":       dateTo.Format(DATE_FORMAT),
 			"form[type]":     "godzin",
@@ -23,7 +23,7 @@ func (api *TauronApiClient) fetchData(dateFrom, dateTo time.Time) (*ELicznikData
 			"form[oze]":      "1",
 			"form[fileType]": "CSV",
 		}).
-		Post("https://elicznik.tauron-dystrybucja.pl/energia/do/dane")
+		Get("https://elicznik.tauron-dystrybucja.pl/energia/do/dane")
 
 	if err != nil {
 		return nil, errors.Wrap(err, "Fetching data error")

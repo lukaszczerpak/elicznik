@@ -34,7 +34,7 @@ func mockResponses(filename string) {
 		httpmock.NewJsonResponderOrPanic(200, make(map[string]string)))
 	httpmock.RegisterResponder("POST", `https://logowanie.tauron-dystrybucja.pl/login`,
 		httpmock.NewJsonResponderOrPanic(200, make(map[string]string)))
-	httpmock.RegisterResponder("POST", `https://elicznik.tauron-dystrybucja.pl/energia/do/dane`,
+	httpmock.RegisterResponder("GET", `https://elicznik.tauron-dystrybucja.pl/energia/do/dane`,
 		httpmock.NewBytesResponder(200, loadFile(filename)))
 }
 
