@@ -16,12 +16,12 @@ func (api *TauronApiClient) fetchData(dateFrom, dateTo time.Time) (*ELicznikData
 
 	resp, err := api.client.R().
 		SetQueryParams(map[string]string{
-			"form[from]":     dateFrom.Format(DATE_FORMAT),
-			"form[to]":       dateTo.Format(DATE_FORMAT),
-			"form[type]":     "godzin",
-			"form[consum]":   "1",
-			"form[oze]":      "1",
-			"form[fileType]": "CSV",
+			"form[from]":           dateFrom.Format(DATE_FORMAT),
+			"form[to]":             dateTo.Format(DATE_FORMAT),
+			"form[type]":           "godzin",
+			"form[energy][consum]": "1",
+			"form[energy][oze]":    "1",
+			"form[fileType]":       "CSV",
 		}).
 		Get("https://elicznik.tauron-dystrybucja.pl/energia/do/dane")
 
