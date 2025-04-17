@@ -1,12 +1,14 @@
 package api
 
 import (
-	"elicznik/util"
 	"encoding/csv"
-	"github.com/pkg/errors"
 	"strconv"
 	"strings"
 	"time"
+
+	"github.com/pkg/errors"
+
+	"elicznik/util"
 )
 
 type ELicznikMeasurement struct {
@@ -36,7 +38,7 @@ func parseTauronCsvRecord(record []string) (*ELicznikMeasurement, error) {
 		return nil, err
 	}
 
-	power, err := strconv.ParseFloat(strings.ReplaceAll(record[1], ",", "."), 64)
+	power, err := strconv.ParseFloat(strings.ReplaceAll(record[2], ",", "."), 64)
 	if err != nil {
 		return nil, err
 	}
@@ -76,7 +78,7 @@ func ParseTauronCsv(payload string) (*ELicznikData, error) {
 		if err != nil {
 			return nil, err
 		}
-		switch rt := record[2]; rt {
+		switch rt := record[3]; rt {
 		case "oddanie":
 			data.Dane.FeedIn = append(data.Dane.FeedIn, *eLicznikMeasurement)
 		case "pobór":

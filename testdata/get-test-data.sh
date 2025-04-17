@@ -4,37 +4,37 @@
 [[ -z "$TAURON_PASS" ]] && { echo "Error: TAURON_PASS is not set"; exit 1; }
 
 COOKIE_JAR=cookie.jar.txt
-UA="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36"
+UA="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36"
 REF="https://elicznik.tauron-dystrybucja.pl/energia"
 
 curl -b $COOKIE_JAR -c $COOKIE_JAR https://logowanie.tauron-dystrybucja.pl/login -L -o /dev/null -H "User-Agent: $UA" -H "Referer: $REF"
-curl -b $COOKIE_JAR -c $COOKIE_JAR https://logowanie.tauron-dystrybucja.pl/login -H "User-Agent: $UA" -F username=$TAURON_USER -F password=$TAURON_PASS -F service=https://elicznik.tauron-dystrybucja.pl -H "Referer: $REF" -L -o /dev/null
+curl -b $COOKIE_JAR -c $COOKIE_JAR https://logowanie.tauron-dystrybucja.pl/login -H "User-Agent: $UA" -d username=$TAURON_USER -d password=$TAURON_PASS -d service=https://elicznik.tauron-dystrybucja.pl -H "Referer: $REF" -L -o /dev/null
 
-curl -b $COOKIE_JAR -c $COOKIE_JAR https://elicznik.tauron-dystrybucja.pl/energia/do/dane -H "User-Agent: $UA" -H "Referer: $REF" \
-    -F "form[from]=15.10.2021" \
-    -F "form[to]=21.10.2021" \
-    -F "form[type]=godzin" \
-    -F "form[consum]=1" \
-    -F "form[oze]=1" \
-    -F "form[fileType]=CSV" \
+curl -G -b $COOKIE_JAR -c $COOKIE_JAR https://elicznik.tauron-dystrybucja.pl/energia/do/dane -H "User-Agent: $UA" -H "Referer: $REF" \
+    -d "form[from]=15.10.2021" \
+    -d "form[to]=21.10.2021" \
+    -d "form[type]=godzin" \
+    -d "form[energy][consum]=1" \
+    -d "form[energy][oze]=1" \
+    -d "form[fileType]=CSV" \
     -o sample.csv
 
-curl -b $COOKIE_JAR -c $COOKIE_JAR https://elicznik.tauron-dystrybucja.pl/energia/do/dane -H "User-Agent: $UA" -H "Referer: $REF" \
-    -F "form[from]=30.10.2022" \
-    -F "form[to]=30.10.2022" \
-    -F "form[type]=godzin" \
-    -F "form[consum]=1" \
-    -F "form[oze]=1" \
-    -F "form[fileType]=CSV" \
+curl -G -b $COOKIE_JAR -c $COOKIE_JAR https://elicznik.tauron-dystrybucja.pl/energia/do/dane -H "User-Agent: $UA" -H "Referer: $REF" \
+    -d "form[from]=30.10.2022" \
+    -d "form[to]=30.10.2022" \
+    -d "form[type]=godzin" \
+    -d "form[energy][consum]=1" \
+    -d "form[energy][oze]=1" \
+    -d "form[fileType]=CSV" \
     -o sample-CEST-to-CET.csv
 
-curl -b $COOKIE_JAR -c $COOKIE_JAR https://elicznik.tauron-dystrybucja.pl/energia/do/dane -H "User-Agent: $UA" -H "Referer: $REF" \
-    -F "form[from]=27.03.2022" \
-    -F "form[to]=27.03.2022" \
-    -F "form[type]=godzin" \
-    -F "form[consum]=1" \
-    -F "form[oze]=1" \
-    -F "form[fileType]=CSV" \
+curl -G -b $COOKIE_JAR -c $COOKIE_JAR https://elicznik.tauron-dystrybucja.pl/energia/do/dane -H "User-Agent: $UA" -H "Referer: $REF" \
+    -d "form[from]=27.03.2022" \
+    -d "form[to]=27.03.2022" \
+    -d "form[type]=godzin" \
+    -d "form[energy][consum]=1" \
+    -d "form[energy][oze]=1" \
+    -d "form[fileType]=CSV" \
     -o sample-CET-to-CEST.csv
 
 cat sample.csv | grep -v "2021-10-15 2:00" > sample-missing-data-on-day1.csv
