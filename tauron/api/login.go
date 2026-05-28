@@ -1,9 +1,26 @@
 package api
 
 import (
-	"github.com/pkg/errors"
+	"html"
 	"net/url"
+	"regexp"
+
+	"github.com/pkg/errors"
 )
+
+var kcFormActionRe = regexp.MustCompile(`(?i)<form[^>]+(?:id="kc-form-login"|method="post")[^>]*\baction="([^"]+)"`)
+
+func extractFormAction(body string) string {
+	if m := kcFormActionRe.FindStringSubmatch(body); m != nil {
+		return html.UnescapeString(m[1])
+	}
+	// fallback: any form with an action
+	re := regexp.MustCompile(`(?i)<form[^>]+\baction="([^"]+)"`)
+	if m := re.FindStringSubmatch(body); m != nil {
+		return html.UnescapeString(m[1])
+	}
+	return ""
+}
 
 func (api *TauronApiClient) isUserLoggedIn() bool {
 	u, _ := url.Parse("https://elicznik.tauron-dystrybucja.pl")
@@ -20,20 +37,25 @@ func (api *TauronApiClient) login() error {
 		return nil
 	}
 
-	// initialize session
-	_, err := api.client.R().Get("https://logowanie.tauron-dystrybucja.pl/login")
+	// GET login page to obtain the dynamic Keycloak form action URL
+	resp, err := api.client.R().Get("https://logowanie.tauron-dystrybucja.pl/login?service=https://elicznik.tauron-dystrybucja.pl")
 	if err != nil {
 		return errors.Wrap(err, "Session initialization error")
 	}
+	actionURL := extractFormAction(resp.String())
+	if actionURL == "" {
+		return errors.New("Could not extract login form action URL")
+	}
 
-	// send login form
+	// POST credentials to the dynamic action URL
 	_, err = api.client.R().
 		SetFormData(map[string]string{
-			"username": api.username,
-			"password": api.password,
-			"service":  "https://elicznik.tauron-dystrybucja.pl",
+			"username":     api.username,
+			"password":     api.password,
+			"credentialId": "",
+			"login":        "",
 		}).
-		Post("https://logowanie.tauron-dystrybucja.pl/login")
+		Post(actionURL)
 	if err != nil {
 		return errors.Wrap(err, "Login error")
 	}
@@ -41,6 +63,5 @@ func (api *TauronApiClient) login() error {
 		return errors.New("Invalid username or password")
 	}
 
-	// all good
 	return nil
 }

@@ -1,14 +1,15 @@
 package api
 
 import (
-	"github.com/jarcoal/httpmock"
-	"github.com/stretchr/testify/assert"
 	"log"
 	"net/http"
 	"net/url"
 	"os"
 	"testing"
 	"time"
+
+	"github.com/jarcoal/httpmock"
+	"github.com/stretchr/testify/assert"
 )
 
 func addLoginCookie(c *http.Client) {
@@ -30,10 +31,6 @@ func loadFile(filename string) []byte {
 }
 
 func mockResponses(filename string) {
-	httpmock.RegisterResponder("GET", `https://logowanie.tauron-dystrybucja.pl/login`,
-		httpmock.NewJsonResponderOrPanic(200, make(map[string]string)))
-	httpmock.RegisterResponder("POST", `https://logowanie.tauron-dystrybucja.pl/login`,
-		httpmock.NewJsonResponderOrPanic(200, make(map[string]string)))
 	httpmock.RegisterResponder("GET", `https://elicznik.tauron-dystrybucja.pl/energia/do/dane`,
 		httpmock.NewBytesResponder(200, loadFile(filename)))
 }
